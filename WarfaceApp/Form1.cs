@@ -27,6 +27,12 @@ namespace WarfaceApp
                 }
                 buttonGetPromo.Enabled = true;
                 buttonGetVIP.Enabled = true;
+                bool? Hide = wf.Hidden();
+                if (Hide != null)
+                    checkBox1.Checked = Hide.Value;
+                else
+                    listBox_Log.Items.Add("Обновите n_js_t и n_js_d");
+                checkBox1.Enabled = true;
             }
             catch(Exception ee)
             {
@@ -45,6 +51,11 @@ namespace WarfaceApp
         {
             listBox_Log.Items.Add($"\nВип-{wf.GetAccVip(1)}");
             listBox_Log.Items.Add($"\nВип-{wf.GetAccVip(2)}");
+        }
+
+        private void checkBox1_Click(object sender, EventArgs e)
+        {
+            wf.SwichHidden();
         }
     }
 }

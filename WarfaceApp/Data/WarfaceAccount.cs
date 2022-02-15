@@ -103,7 +103,6 @@ namespace MyGamesRegger.Data
             else if (text.Contains("\"status\":1"))
                 return true;
             return false;
-            
         }
         public bool SwichHidden()
         {

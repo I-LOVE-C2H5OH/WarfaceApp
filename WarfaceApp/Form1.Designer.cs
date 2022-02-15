@@ -41,46 +41,50 @@
             this.buttonGetVIP = new System.Windows.Forms.Button();
             this.buttonGetPromo = new System.Windows.Forms.Button();
             this.listBox_Log = new System.Windows.Forms.ListBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // labelLogin
             // 
             this.labelLogin.AutoSize = true;
-            this.labelLogin.Location = new System.Drawing.Point(12, 43);
+            this.labelLogin.Location = new System.Drawing.Point(10, 32);
             this.labelLogin.Name = "labelLogin";
-            this.labelLogin.Size = new System.Drawing.Size(52, 20);
+            this.labelLogin.Size = new System.Drawing.Size(41, 15);
             this.labelLogin.TabIndex = 0;
             this.labelLogin.Text = "Логин";
             // 
             // labelPassword
             // 
             this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(12, 78);
+            this.labelPassword.Location = new System.Drawing.Point(10, 58);
             this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(62, 20);
+            this.labelPassword.Size = new System.Drawing.Size(49, 15);
             this.labelPassword.TabIndex = 1;
             this.labelPassword.Text = "Пароль";
             // 
             // textBoxLogin
             // 
-            this.textBoxLogin.Location = new System.Drawing.Point(103, 43);
+            this.textBoxLogin.Location = new System.Drawing.Point(90, 32);
+            this.textBoxLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxLogin.Name = "textBoxLogin";
-            this.textBoxLogin.Size = new System.Drawing.Size(260, 27);
+            this.textBoxLogin.Size = new System.Drawing.Size(228, 23);
             this.textBoxLogin.TabIndex = 2;
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(103, 75);
+            this.textBoxPassword.Location = new System.Drawing.Point(90, 56);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
-            this.textBoxPassword.Size = new System.Drawing.Size(260, 27);
+            this.textBoxPassword.Size = new System.Drawing.Size(228, 23);
             this.textBoxPassword.TabIndex = 3;
             // 
             // Auth
             // 
-            this.Auth.Location = new System.Drawing.Point(69, 195);
+            this.Auth.Location = new System.Drawing.Point(65, 169);
+            this.Auth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Auth.Name = "Auth";
-            this.Auth.Size = new System.Drawing.Size(238, 66);
+            this.Auth.Size = new System.Drawing.Size(208, 50);
             this.Auth.TabIndex = 4;
             this.Auth.Text = "Войти";
             this.Auth.UseVisualStyleBackColor = true;
@@ -89,50 +93,53 @@
             // label_n_js_t
             // 
             this.label_n_js_t.AutoSize = true;
-            this.label_n_js_t.Location = new System.Drawing.Point(14, 113);
+            this.label_n_js_t.Location = new System.Drawing.Point(12, 85);
             this.label_n_js_t.Name = "label_n_js_t";
-            this.label_n_js_t.Size = new System.Drawing.Size(78, 20);
+            this.label_n_js_t.Size = new System.Drawing.Size(64, 15);
             this.label_n_js_t.TabIndex = 5;
             this.label_n_js_t.Text = "n_js_t куки";
             // 
             // textBox_n_js_t
             // 
-            this.textBox_n_js_t.Location = new System.Drawing.Point(103, 110);
+            this.textBox_n_js_t.Location = new System.Drawing.Point(90, 82);
+            this.textBox_n_js_t.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox_n_js_t.Name = "textBox_n_js_t";
-            this.textBox_n_js_t.Size = new System.Drawing.Size(260, 27);
+            this.textBox_n_js_t.Size = new System.Drawing.Size(228, 23);
             this.textBox_n_js_t.TabIndex = 6;
             // 
             // textBox_n_js_d
             // 
-            this.textBox_n_js_d.Location = new System.Drawing.Point(103, 143);
+            this.textBox_n_js_d.Location = new System.Drawing.Point(90, 107);
+            this.textBox_n_js_d.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox_n_js_d.Name = "textBox_n_js_d";
-            this.textBox_n_js_d.Size = new System.Drawing.Size(260, 27);
+            this.textBox_n_js_d.Size = new System.Drawing.Size(228, 23);
             this.textBox_n_js_d.TabIndex = 8;
             // 
             // label_n_js_d
             // 
             this.label_n_js_d.AutoSize = true;
-            this.label_n_js_d.Location = new System.Drawing.Point(14, 146);
+            this.label_n_js_d.Location = new System.Drawing.Point(12, 110);
             this.label_n_js_d.Name = "label_n_js_d";
-            this.label_n_js_d.Size = new System.Drawing.Size(82, 20);
+            this.label_n_js_d.Size = new System.Drawing.Size(67, 15);
             this.label_n_js_d.TabIndex = 7;
             this.label_n_js_d.Text = "n_js_d куки";
             // 
             // labeName
             // 
             this.labeName.AutoSize = true;
-            this.labeName.Location = new System.Drawing.Point(133, 9);
+            this.labeName.Location = new System.Drawing.Point(116, 7);
             this.labeName.Name = "labeName";
-            this.labeName.Size = new System.Drawing.Size(39, 20);
+            this.labeName.Size = new System.Drawing.Size(31, 15);
             this.labeName.TabIndex = 9;
             this.labeName.Text = "Имя";
             // 
             // buttonGetVIP
             // 
             this.buttonGetVIP.Enabled = false;
-            this.buttonGetVIP.Location = new System.Drawing.Point(69, 267);
+            this.buttonGetVIP.Location = new System.Drawing.Point(65, 223);
+            this.buttonGetVIP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonGetVIP.Name = "buttonGetVIP";
-            this.buttonGetVIP.Size = new System.Drawing.Size(238, 29);
+            this.buttonGetVIP.Size = new System.Drawing.Size(208, 22);
             this.buttonGetVIP.TabIndex = 10;
             this.buttonGetVIP.Text = "Получить ВИП";
             this.buttonGetVIP.UseVisualStyleBackColor = true;
@@ -141,9 +148,10 @@
             // buttonGetPromo
             // 
             this.buttonGetPromo.Enabled = false;
-            this.buttonGetPromo.Location = new System.Drawing.Point(69, 302);
+            this.buttonGetPromo.Location = new System.Drawing.Point(65, 249);
+            this.buttonGetPromo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonGetPromo.Name = "buttonGetPromo";
-            this.buttonGetPromo.Size = new System.Drawing.Size(238, 29);
+            this.buttonGetPromo.Size = new System.Drawing.Size(208, 22);
             this.buttonGetPromo.TabIndex = 11;
             this.buttonGetPromo.Text = "Получить ПРОМО";
             this.buttonGetPromo.UseVisualStyleBackColor = true;
@@ -152,19 +160,33 @@
             // listBox_Log
             // 
             this.listBox_Log.FormattingEnabled = true;
-            this.listBox_Log.ItemHeight = 20;
+            this.listBox_Log.ItemHeight = 15;
             this.listBox_Log.Items.AddRange(new object[] {
             "Логи"});
-            this.listBox_Log.Location = new System.Drawing.Point(11, 359);
+            this.listBox_Log.Location = new System.Drawing.Point(10, 296);
+            this.listBox_Log.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox_Log.Name = "listBox_Log";
-            this.listBox_Log.Size = new System.Drawing.Size(359, 124);
+            this.listBox_Log.Size = new System.Drawing.Size(315, 94);
             this.listBox_Log.TabIndex = 12;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Enabled = false;
+            this.checkBox1.Location = new System.Drawing.Point(12, 135);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(129, 19);
+            this.checkBox1.TabIndex = 13;
+            this.checkBox1.Text = "Персонаж \"скрыт\"";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Click += new System.EventHandler(this.checkBox1_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(375, 490);
+            this.ClientSize = new System.Drawing.Size(330, 401);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.listBox_Log);
             this.Controls.Add(this.buttonGetPromo);
             this.Controls.Add(this.buttonGetVIP);
@@ -178,8 +200,9 @@
             this.Controls.Add(this.textBoxLogin);
             this.Controls.Add(this.labelPassword);
             this.Controls.Add(this.labelLogin);
-            this.MaximumSize = new System.Drawing.Size(393, 537);
-            this.MinimumSize = new System.Drawing.Size(393, 537);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximumSize = new System.Drawing.Size(346, 440);
+            this.MinimumSize = new System.Drawing.Size(346, 440);
             this.Name = "Form1";
             this.Text = "WarfaceApp";
             this.ResumeLayout(false);
@@ -202,5 +225,6 @@
         private Button buttonGetVIP;
         private Button buttonGetPromo;
         private ListBox listBox_Log;
+        private CheckBox checkBox1;
     }
 }
