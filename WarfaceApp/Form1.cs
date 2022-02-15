@@ -56,6 +56,7 @@ namespace WarfaceApp
         private void checkBox1_Click(object sender, EventArgs e)
         {
             wf.SwichHidden();
+            listBox_Log.Items.Add($"Изменено");
         }
     }
 }
