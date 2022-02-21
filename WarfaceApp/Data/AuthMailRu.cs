@@ -13,6 +13,7 @@ namespace MyGamesRegger.Data
     
     internal class AuthMailRu : AuthWarfaceAcc
     {
+
         private  List<Cookie> cookieMAilRu = new List<Cookie>();
         private  List<Cookie> cookieMyGames = new List<Cookie>();
         private  List<Cookie> cookieWarface = new List<Cookie>();

@@ -13,6 +13,7 @@ namespace MyGamesRegger.Data
 
     class AuthMyGames : AuthWarfaceAcc
     {
+
         private List<Cookie> cookieMyGames = new List<Cookie>();
         private List<Cookie> cookieWarface = new List<Cookie>();
         private string FirstName = "";
