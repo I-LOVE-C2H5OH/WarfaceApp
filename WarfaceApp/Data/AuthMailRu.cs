@@ -52,7 +52,7 @@ namespace MyGamesRegger.Data
             var stream = response.Content.ReadAsStream();
             StreamReader reader = new StreamReader(stream);
             string text = reader.ReadToEnd();
-            string path = "https://auth-ac.my.games/social/mailru?display=popup&form_params=force_us%3D1%26signup_target%3D_self%26remind_target%3D_self%26logo_target%3D_none%26allow_biz_domains%3Dcorp.my.com%2Cmy.games&continue=https%3A%2F%2Faccount.my.games%2Fsocial_back%2F%3Fcontinue%3Dhttps%253A%252F%252Faccount.my.games%252Foauth2%252F%253Fredirect_uri%253Dhttps%25253A%25252F%25252Fru.warface.com%25252Fdynamic%25252Fauth%25252F%25253Fo2%25253D1%2526client_id%253Dru.warface.com%2526response_type%253Dcode%2526signup_method%253Demail%25252Cphone%2526signup_social%253Dmailru%25252Cfb%25252Cvk%25252Cg%25252Cok%25252Ceg%25252Ctwitch%25252Ctw%25252Csteam%2526lang%253Dru_RU%2526gc_id%253D0.1177%26client_id%3Dru.warface.com%26popup%3D1&failure=https%3A%2F%2Faccount.my.games%2Fsocial_back%2F%3Fsoc_error%3D1%26continue%3Dhttps%253A%252F%252Faccount.my.games%252Foauth2%252Flogin%252F%253Fcontinue%253Dhttps%25253A%25252F%25252Faccount.my.games%25252Foauth2%25252Flogin%25252F%25253Fcontinue%25253Dhttps%2525253A%2525252F%2525252Faccount.my.games%2525252Foauth2%2525252F%2525253Fredirect_uri%2525253Dhttps%252525253A%252525252F%252525252Fru.warface.com%252525252Fdynamic%252525252Fauth%252525252F%252525253Fo2%252525253D1%25252526client_id%2525253Dru.warface.com%25252526response_type%2525253Dcode%25252526signup_method%2525253Demail%252525252Cphone%25252526signup_social%2525253Dmailru%252525252Cfb%252525252Cvk%252525252Cg%252525252Cok%252525252Ceg%252525252Ctwitch%252525252Ctw%252525252Csteam%25252526lang%2525253Dru_RU%25252526gc_id%2525253D0.1177%252526client_id%25253Dru.warface.com%252526lang%25253Dru_RU%252526signup_method%25253Demail%2525252Cphone%252526signup_social%25253Dmailru%2525252Cfb%2525252Cvk%2525252Cg%2525252Cok%2525252Ceg%2525252Ctwitch%2525252Ctw%2525252Csteam%252526gc_id%25253D0.1177%2526client_id%253Dru.warface.com%2526lang%253Dru_RU%2526signup_method%253Demail%25252Cphone%2526signup_social%253Dmailru%25252Cfb%25252Cvk%25252Cg%25252Cok%25252Ceg%25252Ctwitch%25252Ctw%25252Csteam%2526gc_id%253D0.1177";
+            string path = @"https://auth-ac.vkplay.ru/social/mailru?display=popup&form_params=force_us%3D1%26signup_target%3D_self%26remind_target%3D_self%26logo_target%3D_none%26allow_biz_domains%3Dcorp.my.com%2Cmy.games%26no_biz%3D1&continue=https%3A%2F%2Faccount.vkplay.ru%2Fsocial_back%2F%3Fcontinue%3Dhttps%253A%252F%252Fvkplay.ru%252F%26client_id%3Dgames.my.com%26popup%3D1&failure=https%3A%2F%2Faccount.vkplay.ru%2Fsocial_back%2F%3Fsoc_error%3D1%26continue%3Dhttps%253A%252F%252Faccount.vkplay.ru%252Flogin%252F";
             if (text == "{\"status\":\"fail\",\"code_number\":409,\"code\":\"auth\"}")
             {
                 throw new Exception("Неверный логин/пароль");
@@ -101,7 +101,8 @@ namespace MyGamesRegger.Data
                 else
                 {
                     string URLAuth = RegirectMyGames(response.Headers.Location.AbsoluteUri);
-                    string crftoken = GetCRFTOKEN(URLAuth);
+                    string loginInWarfaceLink = "https://account.vkplay.ru/oauth2/?redirect_uri=https%3A%2F%2Fru.warface.com%2Fdynamic%2Fauth%2F%3Fo2%3D1&client_id=ru.warface.com&response_type=code&signup_method=email%2Cphone&signup_social=mailru%2Cvk%2Cg%2Cok%2Ceg%2Ctwitch%2Ctw%2Csteam&lang=ru_RU&gc_id=0.1177";
+                    string crftoken = GetCRFTOKEN(loginInWarfaceLink);
                     cookieWarface = GetCookieWarface(crftoken);
                 }
             }
@@ -116,9 +117,10 @@ namespace MyGamesRegger.Data
             return this.FirstName;
         }
 
+
+
         IEnumerable<string>? secstep(IEnumerable<string> cookies)
-        { 
-            
+        {
             string cookie = "";
             for (int i = 0; i < cookieMAilRu.Count - 1; i++)
             {
