@@ -13,7 +13,6 @@ namespace MyGamesRegger.Data
     
     internal class AuthMailRu : AuthWarfaceAcc
     {
-
         private  List<Cookie> cookieMAilRu = new List<Cookie>();
         private  List<Cookie> cookieMyGames = new List<Cookie>();
         private  List<Cookie> cookieWarface = new List<Cookie>();
@@ -101,11 +100,117 @@ namespace MyGamesRegger.Data
                 else
                 {
                     string URLAuth = RegirectMyGames(response.Headers.Location.AbsoluteUri);
+                    getsdc();
+                    getProfile();
+                    GetGameCenterAuthOpen();
                     string loginInWarfaceLink = "https://account.vkplay.ru/oauth2/?redirect_uri=https%3A%2F%2Fru.warface.com%2Fdynamic%2Fauth%2F%3Fo2%3D1&client_id=ru.warface.com&response_type=code&signup_method=email%2Cphone&signup_social=mailru%2Cvk%2Cg%2Cok%2Ceg%2Ctwitch%2Ctw%2Csteam&lang=ru_RU&gc_id=0.1177";
                     string crftoken = GetCRFTOKEN(loginInWarfaceLink);
                     cookieWarface = GetCookieWarface(crftoken);
                 }
             }
+        }
+
+        void getsdc()
+        {
+            string path = "https://auth-ac.vkplay.ru/sdc?from=https://api.vkplay.ru/social/profile/v2/session";
+            string cookie = "";
+            for (int i = 0; i < cookieMyGames.Count; i++)
+            {
+                cookie += cookieMyGames[i].name + "=" + cookieMyGames[i].value + "; ";
+            }
+            cookie += "amc_lang=ru_RU";
+
+            var request = RequestGET(new Uri(path), cookie);
+            HttpClientHandler httpClientHandler = new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate };
+            httpClientHandler.AllowAutoRedirect = false;
+            HttpClient client = new HttpClient(httpClientHandler);
+            HttpResponseMessage response = client.Send(request);
+            IEnumerable<string> cookies = response.Headers.SingleOrDefault(header => header.Key == "Set-Cookie").Value;
+            if (cookies != null)
+                foreach (string cook in cookies)
+                {
+                    Cookie cooks = new Cookie();
+                    string[] c = cook.Split("; ")[0].Split("=");
+                    cooks.name = c[0];
+                    cooks.value = c[1];
+                    int i = Contain(cooks, cookieMyGames);
+                    if (i != -1)
+                    {
+                        cookieMyGames[i].value = cooks.value;
+                    }
+                    else
+                        cookieMyGames.Add(cooks);
+                }
+            var pathtosdcs = response.Headers.Location.AbsoluteUri;
+            cookie = "";
+            for (int i = 0; i < cookieMyGames.Count; i++)
+            {
+                cookie += cookieMyGames[i].name + "=" + cookieMyGames[i].value + "; ";
+            }
+            cookie += "amc_lang=ru_RU";
+            request = RequestGET(new Uri(pathtosdcs), cookie);
+            response = client.Send(request);
+            cookies = response.Headers.SingleOrDefault(header => header.Key == "Set-Cookie").Value;
+            if (cookies != null)
+                foreach (string cook in cookies)
+                {
+                    Cookie cooks = new Cookie();
+                    string[] c = cook.Split("; ")[0].Split("=");
+                    cooks.name = c[0];
+                    cooks.value = c[1];
+                    int i = Contain(cooks, cookieMyGames);
+                    if (i != -1)
+                    {
+                        cookieMyGames[i].value = cooks.value;
+                    }
+                    else
+                        cookieMyGames.Add(cooks);
+                }
+        }
+
+        string GetGameCenterAuthOpen()
+        {
+            string openPath = "https://api.vkplay.ru/account/get_gc_auth/?gc_id=0.0";
+
+            string cookie = "act=w73c2WWcHnm5Ogwy; mc=1259c642590a705ea8b1928bee4e5ec2fa7dba3f34383632; sdcs=j01tuArJcDzf3VxC;";
+            //for (int i = 0; i < cookieMyGames.Count; i++)
+            //{
+            //    cookie += cookieMyGames[i].name + "=" + cookieMyGames[i].value + "; ";
+            //}
+            //cookie += "amc_lang=ru_RU";
+
+            var request = RequestGET(new Uri(openPath), cookie);
+            HttpClientHandler httpClientHandler = new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate };
+            httpClientHandler.AllowAutoRedirect = false;
+            HttpClient client = new HttpClient(httpClientHandler);
+            HttpResponseMessage response = client.Send(request);
+            var stream = response.Content.ReadAsStream();
+            StreamReader reader = new StreamReader(stream);
+            string text = reader.ReadToEnd();
+            reader.Close();
+            return "";
+        }
+
+        string getProfile()
+        {
+            string path = "https://api.vkplay.ru/social/profile/v2/session";
+            string cookie = "";
+            for (int i = 0; i < cookieMyGames.Count; i++)
+            {
+                cookie += cookieMyGames[i].name + "=" + cookieMyGames[i].value + "; ";
+            }
+            cookie += "amc_lang=ru_RU";
+
+            var request = RequestGET(new Uri(path), cookie);
+            HttpClientHandler httpClientHandler = new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate };
+            httpClientHandler.AllowAutoRedirect = false;
+            HttpClient client = new HttpClient(httpClientHandler);
+            HttpResponseMessage response = client.Send(request);
+            var stream = response.Content.ReadAsStream();
+            StreamReader reader = new StreamReader(stream);
+            string text = reader.ReadToEnd();
+            reader.Close();
+            return "";
         }
 
         public List<Cookie> GetWarfaceCookies()
