@@ -173,12 +173,6 @@ namespace MyGamesRegger.Data
             string openPath = "https://api.vkplay.ru/account/get_gc_auth/?gc_id=0.0";
 
             string cookie = "act=w73c2WWcHnm5Ogwy; mc=1259c642590a705ea8b1928bee4e5ec2fa7dba3f34383632; sdcs=j01tuArJcDzf3VxC;";
-            //for (int i = 0; i < cookieMyGames.Count; i++)
-            //{
-            //    cookie += cookieMyGames[i].name + "=" + cookieMyGames[i].value + "; ";
-            //}
-            //cookie += "amc_lang=ru_RU";
-
             var request = RequestGET(new Uri(openPath), cookie);
             HttpClientHandler httpClientHandler = new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate };
             httpClientHandler.AllowAutoRedirect = false;
@@ -191,7 +185,7 @@ namespace MyGamesRegger.Data
             return "";
         }
 
-        string getProfile()
+        public string getProfile()
         {
             string path = "https://api.vkplay.ru/social/profile/v2/session";
             string cookie = "";
