@@ -100,15 +100,25 @@ namespace MyGamesRegger.Data
                 else
                 {
                     string URLAuth = RegirectMyGames(response.Headers.Location.AbsoluteUri);
-                    getsdc();
-                    getProfile();
-                    GetGameCenterAuthOpen();
+                    //getProfile();
+                    List<Cookie> tmpCooke= new List<Cookie>();
+                    foreach (var cook in cookieMyGames)
+                    {
+                        if (cook.name != "ssdc")
+                        {
+                            tmpCooke.Add(cook);
+                        }
+                    }
+                    cookieMyGames = tmpCooke;
+                    //GetGameCenterAuthOpen();
                     string loginInWarfaceLink = "https://account.vkplay.ru/oauth2/?redirect_uri=https%3A%2F%2Fru.warface.com%2Fdynamic%2Fauth%2F%3Fo2%3D1&client_id=ru.warface.com&response_type=code&signup_method=email%2Cphone&signup_social=mailru%2Cvk%2Cg%2Cok%2Ceg%2Ctwitch%2Ctw%2Csteam&lang=ru_RU&gc_id=0.1177";
                     string crftoken = GetCRFTOKEN(loginInWarfaceLink);
                     cookieWarface = GetCookieWarface(crftoken);
                 }
             }
         }
+
+
 
         void getsdc()
         {
@@ -464,12 +474,17 @@ namespace MyGamesRegger.Data
             {
                 cookie += cookieMyGames[i].name + "=" + cookieMyGames[i].value + "; ";
             }
-            cookie += cookieMyGames[cookieMyGames.Count - 1].name + "=" + cookieMyGames[cookieMyGames.Count - 1].value;
+            cookie += cookieMyGames[cookieMyGames.Count - 1].name + "=" + cookieMyGames[cookieMyGames.Count - 1].value+"; ";
             var request = RequestGET(new Uri(uri), cookie);
             HttpClientHandler httpClientHandler = new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate };
             httpClientHandler.AllowAutoRedirect = false;
             HttpClient client = new HttpClient(httpClientHandler);
             HttpResponseMessage response = client.Send(request);
+            
+            var stream = response.Content.ReadAsStream();
+            StreamReader reader = new StreamReader(stream);
+            string text = reader.ReadToEnd();
+
             IEnumerable<string> cookies = response.Headers.SingleOrDefault(header => header.Key == "Set-Cookie").Value;
             foreach (string cook in cookies)
             {
@@ -485,9 +500,7 @@ namespace MyGamesRegger.Data
                 else
                     cookieMyGames.Add(cooks);
             }
-            var stream = response.Content.ReadAsStream();
-            StreamReader reader = new StreamReader(stream);
-            string text = reader.ReadToEnd();
+
             Regex regex = new Regex("<input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\"(.*?)\">");
             MatchCollection matches = regex.Matches(text);
             string csrfmiddlewaretoken = matches[0].Groups[1].Value;
